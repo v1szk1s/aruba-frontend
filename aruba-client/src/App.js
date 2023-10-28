@@ -5,6 +5,7 @@ import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import Navbar from "./components/navbar/navbar";
 import Marketplace from "./pages/marketplace/marketplace";
+import Checkout from "./pages/checkout/checkout";
 import { AuthProvider } from "./helpers/authContext";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/checkout/:id" element={<Checkout />} />
           </Routes>
         </ThemeProvider>
       </AuthProvider>

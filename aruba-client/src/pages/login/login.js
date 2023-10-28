@@ -31,6 +31,7 @@ export default function SignIn() {
     .then(function (response) {
       if (response.status === 200) {
         console.log("Login successfull");
+        localStorage.setItem('token', response.data.accessToken);
         navigate("/marketplace");
       }
     })
