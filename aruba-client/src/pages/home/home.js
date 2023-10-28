@@ -25,6 +25,7 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
 import PropTypes from "prop-types";
 import Divider from "@mui/material/Divider";
+import { Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme, isFullsized }) => ({
   backgroundColor: "#1A2027",
@@ -34,6 +35,7 @@ const Item = styled(Paper)(({ theme, isFullsized }) => ({
   color: theme.palette.text.secondary,
   height: isFullsized ? "100vh" : "",
   borderRadius: "0px",
+  boxShadow: "none",
 }));
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
@@ -209,26 +211,41 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
             <Grid item xs={6}>
               <Item>
-                <h1>Deploy easily!</h1>
+                <Typography variant="h1" component="h1">
+                  Deploy Easily!
+                </Typography>
               </Item>
               <Item>
-                <RocketLaunchOutlinedIcon /> Limitless Possibilities
+                <Typography variant="h4" component="h4">
+                  <RocketLaunchOutlinedIcon fontSize="large" />
+                  Limitless Possibilities
+                </Typography>
               </Item>
               <Item>
-                <LanguageIcon /> Universal Compatibilites
+                <Typography variant="h4" component="h4">
+                  <LanguageIcon fontSize="large" /> Universal Compatibilites
+                </Typography>
               </Item>
               <Item>
-                <CloudDownloadIcon /> Effortless Installation
+                <Typography variant="h4" component="h4">
+                  <CloudDownloadIcon fontSize="large" /> Effortless Installation
+                </Typography>
               </Item>
               <Item>
-                <Button variant="contained">Register Now!</Button>
+                <Button
+                  variant="contained"
+                  style={{ fontSize: "25px", marginTop: "120px" }}
+                >
+                  Register Now!
+                </Button>
               </Item>
             </Grid>
             <Grid item xs={6}>
-              <img src={hiro} />
+              <img src={hiro} width={"600px"} />
             </Grid>
           </Grid>
         </Item>
@@ -238,34 +255,42 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
             <Grid container xs={12}>
               <Grid item xs={12}>
                 <Item>
-                  <h1>We have 45,000 apps to deploy!</h1>
+                  <Typography variant="h1" component="h1">
+                    We have 45,000 apps to deploy!
+                  </Typography>
                 </Item>
               </Grid>
 
               <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Item>
-                    <p>
-                      Rest easy knowing that every extension featured on
-                      AruPlace
-                      <br></br>
-                      undergoes a stringent vetting process. Our commitment to
-                      security ensures that you can explore and experiment
-                      without compromising the integrity of your digital
-                      ecosystem.
-                    </p>
-                  </Item>
-                  <Item>
-                    <Button variant="contained">Register Now!</Button>
-                  </Item>
+                <Grid container xs={6} justifyContent={"center"}>
+                  <Grid item xs={8}>
+                    <Item>
+                      <Typography variant="h5" component="h5">
+                        Rest easy knowing that every extension featured on
+                        AruPlace undergoes a stringent vetting process. Our
+                        commitment to security ensures that you can explore and
+                        experiment without compromising the integrity of your
+                        digital ecosystem.
+                      </Typography>
+                    </Item>
+                    <Item>
+                      <Button
+                        variant="contained"
+                        style={{ fontSize: "25px", marginTop: "120px" }}
+                      >
+                        Let's see the Apps
+                      </Button>
+                    </Item>
+                  </Grid>
                 </Grid>
                 <Grid item xs={6}>
                   <Item>
-                    <img src={hero2} />
+                    <img src={hero2} style={{ width: "300px" }} />
                   </Item>
                 </Grid>
               </Grid>
@@ -296,6 +321,7 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
             <Grid item xs={6}>
               <Item>

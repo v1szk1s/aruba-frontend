@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useAuth } from "../../helpers/authContext.js";
-
+import logo from "../../img/aruplace_logo.png";
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,24 +41,8 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
+          <img src={logo} width="150px" />
+
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -86,6 +70,7 @@ function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                justifyContent: "center",
               }}
             >
               <MenuItem onClick={handleCloseNavMenu} component={Link} to="/">
@@ -124,23 +109,27 @@ function Navbar() {
               Home
             </Button>
             {isLogged && (
-            <Button
-              onClick={handleCloseNavMenu}
-              component={Link}
-              to="/marketplace"
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Apps
-            </Button>
+              <Button
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/marketplace"
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Apps
+              </Button>
             )}
-
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button color="inherit" sx={{ ml: 2 }} component={Link} to="/login">
+            <Button
+              style={{ fontSize: "18px" }}
+              sx={{ ml: 2 }}
+              component={Link}
+              to="/login"
+            >
               Login
             </Button>
             <Button
-              color="inherit"
+              style={{ fontSize: "18px" }}
               sx={{ ml: 2 }}
               component={Link}
               to="/register"
