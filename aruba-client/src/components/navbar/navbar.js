@@ -87,11 +87,9 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu} component={Link} to="/">
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -116,21 +114,34 @@ function Navbar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleCloseNavMenu}
+              component={Link}
+              to="/"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              component={Link}
+              to="/marketplace"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Apps
+            </Button>
+
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button color="inherit" sx={{ ml: 2 }}>
+            <Button color="inherit" sx={{ ml: 2 }} component={Link} to="/login">
               Login
             </Button>
-            <Button color="inherit" sx={{ ml: 2 }}>
+            <Button
+              color="inherit"
+              sx={{ ml: 2 }}
+              component={Link}
+              to="/register"
+            >
               Register
             </Button>
           </Box>
