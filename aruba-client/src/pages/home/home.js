@@ -2,7 +2,6 @@ import Stack from "@mui/material/Stack";
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import hiro from "../../img/hiro_icon.png";
 import hero2 from "../../img/hero2.png";
@@ -25,6 +24,7 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
 import PropTypes from "prop-types";
 import Divider from "@mui/material/Divider";
+import { Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme, isFullsized }) => ({
   backgroundColor: "#1A2027",
@@ -34,6 +34,7 @@ const Item = styled(Paper)(({ theme, isFullsized }) => ({
   color: theme.palette.text.secondary,
   height: isFullsized ? "100vh" : "",
   borderRadius: "0px",
+  boxShadow: "none",
 }));
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
@@ -209,26 +210,41 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
             <Grid item xs={6}>
               <Item>
-                <h1>Deploy easily!</h1>
+                <Typography variant="h1" component="h1">
+                  Deploy Easily!
+                </Typography>
               </Item>
               <Item>
-                <RocketLaunchOutlinedIcon /> Limitless Possibilities
+                <Typography variant="h4" component="h4">
+                  <RocketLaunchOutlinedIcon fontSize="large" />
+                  Limitless Possibilities
+                </Typography>
               </Item>
               <Item>
-                <LanguageIcon /> Universal Compatibilites
+                <Typography variant="h4" component="h4">
+                  <LanguageIcon fontSize="large" /> Universal Compatibilites
+                </Typography>
               </Item>
               <Item>
-                <CloudDownloadIcon /> Effortless Installation
+                <Typography variant="h4" component="h4">
+                  <CloudDownloadIcon fontSize="large" /> Effortless Installation
+                </Typography>
               </Item>
               <Item>
-                <Button variant="contained">Register Now!</Button>
+                <Button
+                  variant="contained"
+                  style={{ fontSize: "20px", marginTop: "120px" }}
+                >
+                  Register Now!
+                </Button>
               </Item>
             </Grid>
             <Grid item xs={6}>
-              <img src={hiro} />
+              <img src={hiro} width={"450px"} />
             </Grid>
           </Grid>
         </Item>
@@ -238,34 +254,42 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
             <Grid container xs={12}>
               <Grid item xs={12}>
                 <Item>
-                  <h1>We have 45,000 apps to deploy!</h1>
+                  <Typography variant="h1" component="h1">
+                    We have 45,000 apps to deploy!
+                  </Typography>
                 </Item>
               </Grid>
 
               <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Item>
-                    <p>
-                      Rest easy knowing that every extension featured on
-                      AruPlace
-                      <br></br>
-                      undergoes a stringent vetting process. Our commitment to
-                      security ensures that you can explore and experiment
-                      without compromising the integrity of your digital
-                      ecosystem.
-                    </p>
-                  </Item>
-                  <Item>
-                    <Button variant="contained">Register Now!</Button>
-                  </Item>
+                <Grid container xs={6} justifyContent={"center"}>
+                  <Grid item xs={8}>
+                    <Item>
+                      <Typography variant="h5" component="h5">
+                        Rest easy knowing that every extension featured on
+                        AruPlace undergoes a stringent vetting process. Our
+                        commitment to security ensures that you can explore and
+                        experiment without compromising the integrity of your
+                        digital ecosystem.
+                      </Typography>
+                    </Item>
+                    <Item>
+                      <Button
+                        variant="contained"
+                        style={{ fontSize: "20px", marginTop: "120px" }}
+                      >
+                        Let's see the Apps
+                      </Button>
+                    </Item>
+                  </Grid>
                 </Grid>
                 <Grid item xs={6}>
                   <Item>
-                    <img src={hero2} />
+                    <img src={hero2} style={{ width: "250px" }} />
                   </Item>
                 </Grid>
               </Grid>
@@ -273,22 +297,37 @@ function Home() {
           </Grid>
         </Item>
         <Item isFullsized>
-          <h2>The Process</h2>
-          <Stack sx={{ width: "100%" }} spacing={4}>
-            <Stepper
-              alternativeLabel
-              activeStep={1}
-              connector={<ColorlibConnector />}
-            >
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel StepIconComponent={ColorlibStepIcon}>
-                    {label}
-                  </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Stack>
+          <Grid
+            container
+            direction={"column"}
+            justifyContent="space-around"
+            height={"100%"}
+          >
+            <Grid item>
+              <Item>
+                <Typography variant="h1" component="h1">
+                  The Process
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item>
+              <Stack sx={{ width: "100%" }} spacing={4}>
+                <Stepper
+                  alternativeLabel
+                  activeStep={1}
+                  connector={<ColorlibConnector />}
+                >
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel StepIconComponent={ColorlibStepIcon}>
+                        {label}
+                      </StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Stack>
+            </Grid>
+          </Grid>
         </Item>
         <Item isFullsized>
           <Grid
@@ -296,21 +335,35 @@ function Home() {
             direction="row"
             justifyContent="space-around"
             alignItems="center"
+            height={"100%"}
           >
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <Item>
-                <h1>Need help?</h1>
+                <Typography variant="h1" component="h1">
+                  Need help?
+                </Typography>
               </Item>
               <Item>
-                <h3>Call our excellent customer support!</h3>
+                <Typography variant="h4" component="h4">
+                  Call our excellent customer support!
+                </Typography>
               </Item>
               <Item>
-                <Button variant="contained">Support</Button>
+                <Button
+                  variant="contained"
+                  style={{ fontSize: "20px", marginTop: "120px" }}
+                >
+                  Support
+                </Button>
               </Item>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Item>
-                <img src={support} alt="Description of the image" />
+                <img
+                  src={support}
+                  alt="Description of the image"
+                  style={{ width: "350px" }}
+                />
               </Item>
             </Grid>
           </Grid>

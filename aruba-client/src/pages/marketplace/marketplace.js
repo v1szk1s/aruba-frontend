@@ -13,24 +13,36 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const defaultTheme = createTheme();
 
 export default function Album() {
+  const [app, setApp] = React.useState([]);
   
+  React.useEffect(() => {
+    axios.get('http://80.211.122.162/api/marketplace', { headers: { 'authToken': localStorage.getItem('token') } })
+      .then((response) => {
+        console.log(response.data);
+        setApp(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+  , []);
+
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <main>
+      <main style={{background: "#262b31"}}>
         <Box
           sx={{
-            bgcolor: 'background.paper',
             pt: 8,
             
           }}
@@ -52,11 +64,11 @@ export default function Album() {
             </Typography>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="md"  mx={0}>
           {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+          <Grid container spacing={4}  mx={0}>
+            {app.map((app) => (
+              <Grid item key={app._id} xs={12} sm={6} md={4}>
                 {/*Generate card here*/}
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -71,18 +83,17 @@ export default function Album() {
                   />
                   <CardContent sx={{ flexGrow: 1}} style={{paddingBottom: 0}}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {app.name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      {app.description}
                     </Typography>
                     <Typography style={{ marginTop: '30px' }}>
-                        5900 HUF
+                      ${app.price} 
                     </Typography>
                   </CardContent>
                   <CardActions style={{ display: 'flex', justifyContent: 'center'}}>
-                    <Button size="large">Telepítés</Button>
+                    <Button size="large" component={Link} to={`/checkout/${app._id}`}>Telepítés</Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -91,6 +102,5 @@ export default function Album() {
         </Container>
       </main>
       
-    </ThemeProvider>
   );
 }

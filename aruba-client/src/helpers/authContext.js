@@ -15,7 +15,7 @@ export function AuthProvider(props) {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       axios
-        .get("http://10.109.147.233:80/auth", {
+        .get("http://80.211.122.162/api/auth", {
           headers: {
             authToken: localStorage.getItem("token"),
           },
