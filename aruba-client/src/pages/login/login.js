@@ -23,7 +23,7 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-    axios.post('http://localhost:8080/login', {
+    axios.post('http://10.109.147.233:80/login', {
       email: email,
       password: password
     })
