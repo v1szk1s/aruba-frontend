@@ -298,22 +298,37 @@ function Home() {
           </Grid>
         </Item>
         <Item isFullsized>
-          <h2>The Process</h2>
-          <Stack sx={{ width: "100%" }} spacing={4}>
-            <Stepper
-              alternativeLabel
-              activeStep={1}
-              connector={<ColorlibConnector />}
-            >
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel StepIconComponent={ColorlibStepIcon}>
-                    {label}
-                  </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Stack>
+          <Grid
+            container
+            direction={"column"}
+            justifyContent="space-around"
+            height={"100%"}
+          >
+            <Grid item>
+              <Item>
+                <Typography variant="h1" component="h1">
+                  The Process
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item>
+              <Stack sx={{ width: "100%" }} spacing={4}>
+                <Stepper
+                  alternativeLabel
+                  activeStep={1}
+                  connector={<ColorlibConnector />}
+                >
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel StepIconComponent={ColorlibStepIcon}>
+                        {label}
+                      </StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Stack>
+            </Grid>
+          </Grid>
         </Item>
         <Item isFullsized>
           <Grid
@@ -323,18 +338,27 @@ function Home() {
             alignItems="center"
             height={"100%"}
           >
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <Item>
-                <h1>Need help?</h1>
+                <Typography variant="h1" component="h1">
+                  Need help?
+                </Typography>
               </Item>
               <Item>
-                <h3>Call our excellent customer support!</h3>
+                <Typography variant="h3" component="h3">
+                  Call our excellent customer support!
+                </Typography>
               </Item>
               <Item>
-                <Button variant="contained">Support</Button>
+                <Button
+                  variant="contained"
+                  style={{ fontSize: "25px", marginTop: "120px" }}
+                >
+                  Support
+                </Button>
               </Item>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Item>
                 <img src={support} alt="Description of the image" />
               </Item>

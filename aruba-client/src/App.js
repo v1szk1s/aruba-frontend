@@ -16,7 +16,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["Montserrat"].join(","),
+    fontFamily: ["Montserrat", "Arial", "Open Sans", "Calibri"].join(","),
     h1: {
       fontWeight: "bold",
       marginBottom: "75px",
