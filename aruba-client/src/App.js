@@ -8,6 +8,7 @@ import Marketplace from "./pages/marketplace/marketplace";
 import Checkout from "./pages/checkout/checkout";
 import { AuthProvider } from "./helpers/authContext";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import * as React from "react";
 
 const darkTheme = createTheme({
   palette: {
@@ -16,7 +17,7 @@ const darkTheme = createTheme({
       main: "#EF8354",
     },
     background: {
-      default: "#262b31",
+      default: "#1A2027",
     },
   },
   typography: {
@@ -41,13 +42,39 @@ const darkTheme = createTheme({
   },
 });
 
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+    background: {
+      default: "#fff",
+    },
+  },
+  typography: {
+    fontFamily: ["Montserrat", "Arial", "Open Sans", "Calibri"].join(","),
+    h1: {
+      fontWeight: "bold",
+      marginBottom: "75px",
+
+      fontSize: "4.5rem",
+    },
+    h4: {
+      fontSize: "1.6rem",
+    },
+    h5: {
+      textAlign: "justify",
+      fontSize: "1.3rem",
+    },
+  },
+});
+
 function App() {
   document.title = "Az új oldal címe";
+  const [darkMode, setDarkMode] = React.useState(true);
   return (
     <div className="App">
       <AuthProvider>
-        <ThemeProvider theme={darkTheme}>
-          <Navbar />
+        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+          <Navbar setDarkMode={setDarkMode} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

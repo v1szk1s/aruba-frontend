@@ -26,39 +26,15 @@ import PropTypes from "prop-types";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 
-const Item = styled(Paper)(({ theme, isFullsized }) => ({
-  backgroundColor: "#1A2027",
+const Item = styled(Paper)(({ theme, fullsized }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: isFullsized ? "100vh" : "",
+  color: theme.palette.primary,
+  backgroundColor: theme.palette.background.default,
+  height: fullsized ? "100vh" : "",
   borderRadius: "0px",
   boxShadow: "none",
-}));
-
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 10,
-    left: "calc(-50% + 16px)",
-    right: "calc(50% + 16px)",
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    borderColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
 }));
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
@@ -204,7 +180,7 @@ function Home() {
   return (
     <>
       <Stack divider={<Divider orientation="horizontal" flexItem />}>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"
@@ -248,7 +224,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"
@@ -296,7 +272,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction={"column"}
@@ -329,7 +305,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"
