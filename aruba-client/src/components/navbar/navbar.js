@@ -13,13 +13,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useAuth } from "../../helpers/authContext.js";
 
-const pages = ["Home", "Apps", "Support"];
-const authenticated_pages = [];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const { isLogged } = useAuth();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -122,6 +123,7 @@ function Navbar() {
             >
               Home
             </Button>
+            {isLogged && (
             <Button
               onClick={handleCloseNavMenu}
               component={Link}
@@ -130,6 +132,7 @@ function Navbar() {
             >
               Apps
             </Button>
+            )}
 
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>

@@ -17,7 +17,6 @@ const darkTheme = createTheme({
 function App() {
   return (
     <div className="App">
-          
     <AuthProvider>
     <ThemeProvider theme={darkTheme}>
       <Navbar />
