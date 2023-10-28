@@ -26,7 +26,7 @@ export default function Album() {
   const [app, setApp] = React.useState([]);
   
   React.useEffect(() => {
-    axios.get('http://localhost:8080/marketplace', { headers: { 'authToken': localStorage.getItem('token') } })
+    axios.get('http://80.211.122.162/api/marketplace', { headers: { 'authToken': localStorage.getItem('token') } })
       .then((response) => {
         console.log(response.data);
         setApp(response.data);
