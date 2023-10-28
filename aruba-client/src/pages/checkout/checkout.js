@@ -47,7 +47,7 @@ export default function Checkout() {
   };
 
   const deploy = () => {
-    axios.post(`http://localhost:8080/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
+    axios.post(`http://localhost:8080/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
     .then(res => {
       console.log(res);
     }
@@ -59,20 +59,9 @@ export default function Checkout() {
   }
   
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-       
-      </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+    
+     
+      <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
             Checkout
@@ -125,6 +114,6 @@ export default function Checkout() {
         </Paper>
 
       </Container>
-    </React.Fragment>
+    
   );
 }

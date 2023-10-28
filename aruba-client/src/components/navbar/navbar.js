@@ -108,7 +108,7 @@ function Navbar() {
             >
               Home
             </Button>
-            {isLogged && (
+            {isLogged ? (
               <Button
                 onClick={handleCloseNavMenu}
                 component={Link}
@@ -117,25 +117,27 @@ function Navbar() {
               >
                 Apps
               </Button>
+            ) : (
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Button
+                  style={{ fontSize: "18px" }}
+                  sx={{ ml: 2 }}
+                  component={Link}
+                  to="/login"
+                >
+                  Login
+                </Button>
+                <Button
+                  style={{ fontSize: "18px" }}
+                  sx={{ ml: 2 }}
+                  component={Link}
+                  to="/register"
+                >
+                  Register
+                </Button>
+              </Box>
             )}
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button
-              style={{ fontSize: "18px" }}
-              sx={{ ml: 2 }}
-              component={Link}
-              to="/login"
-            >
-              Login
-            </Button>
-            <Button
-              style={{ fontSize: "18px" }}
-              sx={{ ml: 2 }}
-              component={Link}
-              to="/register"
-            >
-              Register
-            </Button>
+
           </Box>
         </Toolbar>
       </Container>

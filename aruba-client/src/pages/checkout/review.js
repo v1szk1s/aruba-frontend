@@ -20,7 +20,7 @@ export default function Review() {
   const {id} = useParams();
   const [app, setApp] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:8080/app/${id}`, { headers: { authToken: localStorage.getItem('token')} })
+    axios.get(`http://80.211.122.162/api/app/${id}`, { headers: { authToken: localStorage.getItem('token')} })
     .then(res => {
       setApp(res.data);
       product.name = res.data.name;

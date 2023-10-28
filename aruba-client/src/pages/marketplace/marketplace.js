@@ -21,7 +21,6 @@ import { Link } from 'react-router-dom';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const defaultTheme = createTheme();
 
 export default function Album() {
   const [app, setApp] = React.useState([]);
@@ -41,11 +40,9 @@ export default function Album() {
 
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <main>
+      <main style={{background: "#262b31"}}>
         <Box
           sx={{
-            bgcolor: 'background.paper',
             pt: 8,
             
           }}
@@ -67,9 +64,9 @@ export default function Album() {
             </Typography>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="md"  mx={0}>
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          <Grid container spacing={4}  mx={0}>
             {app.map((app) => (
               <Grid item key={app._id} xs={12} sm={6} md={4}>
                 {/*Generate card here*/}
@@ -92,7 +89,7 @@ export default function Album() {
                       {app.description}
                     </Typography>
                     <Typography style={{ marginTop: '30px' }}>
-                      {app.price} HUF
+                      ${app.price} 
                     </Typography>
                   </CardContent>
                   <CardActions style={{ display: 'flex', justifyContent: 'center'}}>
@@ -105,6 +102,5 @@ export default function Album() {
         </Container>
       </main>
       
-    </ThemeProvider>
   );
 }
