@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
@@ -19,9 +20,26 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    const email= data.get("email");
+    const password= data.get("password");
+    const firstName= data.get("firstName");
+    const lastName= data.get("lastName");
+    const repass= data.get("repass");
+    axios.post('http://localhost:8080/register', {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      repass: repass
+    })
+    .then(function (response) {
+      console.log(response);
+      if(response.status === 200){
+        console.log("Success");
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   };
 
