@@ -5,6 +5,9 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import hiro from "../../img/hiro_icon.png";
+import hero2 from "../../img/hero2.png";
+import support from "../../img/support.png";
+
 import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
@@ -84,7 +87,7 @@ function Home() {
                 </Grid>
                 <Grid item xs={6}>
                   <Item>
-                    <img src={hiro} />
+                    <img src={hero2} />
                   </Item>
                 </Grid>
               </Grid>
@@ -114,7 +117,7 @@ function Home() {
             </Grid>
             <Grid item xs={6}>
               <Item>
-                <img src={hiro} alt="Description of the image" />
+                <img src={support} alt="Description of the image" />
               </Item>
             </Grid>
           </Grid>
