@@ -15,6 +15,9 @@ const darkTheme = createTheme({
     primary: {
       main: "#EF8354",
     },
+    background: {
+      default: "#262b31",
+    },
   },
   typography: {
     fontFamily: ["Montserrat", "Arial", "Open Sans", "Calibri"].join(","),
