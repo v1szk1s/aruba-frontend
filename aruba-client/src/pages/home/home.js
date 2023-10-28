@@ -59,8 +59,10 @@ function Home() {
             alignItems="center"
           >
             <Grid container xs={12}>
-              <Grid item>
-                <h1>We have 45,000 apps to deploy!</h1>
+              <Grid item xs={12}>
+                <Item>
+                  <h1>We have 45,000 apps to deploy!</h1>
+                </Item>
               </Grid>
 
               <Grid container spacing={2}>
@@ -89,8 +91,34 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item>Item 3</Item>
-        <Item>Item 4</Item>
+        <Item>
+          <h2>The Process</h2>
+        </Item>
+        <Item>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <Item>
+                <h1>Need help?</h1>
+              </Item>
+              <Item>
+                <h3>Call our excellent customer support!</h3>
+              </Item>
+              <Item>
+                <Button variant="contained">Support</Button>
+              </Item>
+            </Grid>
+            <Grid item xs={6}>
+              <Item>
+                <img src={hiro} alt="Description of the image" />
+              </Item>
+            </Grid>
+          </Grid>
+        </Item>
       </Stack>
     </>
   );
