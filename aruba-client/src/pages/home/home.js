@@ -2,7 +2,6 @@ import Stack from "@mui/material/Stack";
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import hiro from "../../img/hiro_icon.png";
 import hero2 from "../../img/hero2.png";
@@ -245,7 +244,7 @@ function Home() {
               </Item>
             </Grid>
             <Grid item xs={6}>
-              <img src={hiro} width={"500px"} />
+              <img src={hiro} width={"450px"} />
             </Grid>
           </Grid>
         </Item>
