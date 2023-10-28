@@ -21,11 +21,13 @@ const darkTheme = createTheme({
       fontWeight: "bold",
       marginBottom: "75px",
       color: "#fff",
+      fontSize: "80px",
     },
     h4: {
-      textAlign: "left",
-      paddingLeft: "200px",
+      //textAlign: "left",
+      //paddingLeft: "200px",
       color: "#fff",
+      fontSize: "25px",
     },
     h5: {
       textAlign: "justify",
@@ -36,6 +38,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  document.title = "Az új oldal címe";
   return (
     <div className="App">
       <AuthProvider>

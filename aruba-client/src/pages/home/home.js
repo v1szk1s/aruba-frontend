@@ -238,14 +238,14 @@ function Home() {
               <Item>
                 <Button
                   variant="contained"
-                  style={{ fontSize: "25px", marginTop: "120px" }}
+                  style={{ fontSize: "20px", marginTop: "120px" }}
                 >
                   Register Now!
                 </Button>
               </Item>
             </Grid>
             <Grid item xs={6}>
-              <img src={hiro} width={"600px"} />
+              <img src={hiro} width={"500px"} />
             </Grid>
           </Grid>
         </Item>
@@ -281,7 +281,7 @@ function Home() {
                     <Item>
                       <Button
                         variant="contained"
-                        style={{ fontSize: "25px", marginTop: "120px" }}
+                        style={{ fontSize: "20px", marginTop: "120px" }}
                       >
                         Let's see the Apps
                       </Button>
@@ -290,7 +290,7 @@ function Home() {
                 </Grid>
                 <Grid item xs={6}>
                   <Item>
-                    <img src={hero2} style={{ width: "300px" }} />
+                    <img src={hero2} style={{ width: "250px" }} />
                   </Item>
                 </Grid>
               </Grid>
@@ -345,14 +345,14 @@ function Home() {
                 </Typography>
               </Item>
               <Item>
-                <Typography variant="h3" component="h3">
+                <Typography variant="h4" component="h4">
                   Call our excellent customer support!
                 </Typography>
               </Item>
               <Item>
                 <Button
                   variant="contained"
-                  style={{ fontSize: "25px", marginTop: "120px" }}
+                  style={{ fontSize: "20px", marginTop: "120px" }}
                 >
                   Support
                 </Button>
@@ -360,7 +360,11 @@ function Home() {
             </Grid>
             <Grid item xs={5}>
               <Item>
-                <img src={support} alt="Description of the image" />
+                <img
+                  src={support}
+                  alt="Description of the image"
+                  style={{ width: "350px" }}
+                />
               </Item>
             </Grid>
           </Grid>
