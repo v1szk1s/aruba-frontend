@@ -1,8 +1,6 @@
-import Stack from "@mui/material/Stack";
 import * as React from "react";
-import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
+
 import hiro from "../../img/hiro_icon.png";
 import hero2 from "../../img/hero2.png";
 import support from "../../img/support.png";
@@ -10,55 +8,36 @@ import support from "../../img/support.png";
 import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import Button from "@mui/material/Button";
 
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import Check from "@mui/icons-material/Check";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
 import PropTypes from "prop-types";
-import Divider from "@mui/material/Divider";
-import { Typography } from "@mui/material";
+import {
+  Typography,
+  Step,
+  StepLabel,
+  Button,
+  Stepper,
+  Grid,
+  Paper,
+  Stack,
+  Divider,
+} from "@mui/material";
 
-const Item = styled(Paper)(({ theme, isFullsized }) => ({
-  backgroundColor: "#1A2027",
+const Item = styled(Paper)(({ theme, fullsized }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: isFullsized ? "100vh" : "",
+  color: theme.palette.primary,
+  backgroundColor: theme.palette.background.default,
+  height: fullsized ? "100vh" : "",
   borderRadius: "0px",
   boxShadow: "none",
-}));
-
-const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 10,
-    left: "calc(-50% + 16px)",
-    right: "calc(50% + 16px)",
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      borderColor: "#784af4",
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    borderColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
 }));
 
 const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
@@ -204,7 +183,7 @@ function Home() {
   return (
     <>
       <Stack divider={<Divider orientation="horizontal" flexItem />}>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"
@@ -248,7 +227,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"
@@ -296,7 +275,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction={"column"}
@@ -329,7 +308,7 @@ function Home() {
             </Grid>
           </Grid>
         </Item>
-        <Item isFullsized>
+        <Item fullsized>
           <Grid
             container
             direction="row"

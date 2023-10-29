@@ -1,40 +1,40 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+
+import {
+  MenuItem,
+  Button,
+  Container,
+  Menu,
+  Typography,
+  IconButton,
+  Toolbar,
+  Box,
+  AppBar,
+} from "@mui/material";
 import { Link } from "react-router-dom";
-import AdbIcon from "@mui/icons-material/Adb";
 import { useAuth } from "../../helpers/authContext.js";
 import logo from "../../img/aruplace_logo.png";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
-function Navbar() {
+
+function Navbar({ setDarkMode, darkMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const { isLogged } = useAuth();
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -79,26 +79,6 @@ function Navbar() {
             </Menu>
           </Box>
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
@@ -108,7 +88,7 @@ function Navbar() {
             >
               Home
             </Button>
-            {isLogged ? (
+            {isLogged && (
               <Button
                 onClick={handleCloseNavMenu}
                 component={Link}
@@ -117,10 +97,23 @@ function Navbar() {
               >
                 Apps
               </Button>
-            ) : (
-              <Box sx={{ display: "flex", alignItems: "center" }}>
+            )}
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton
+              onClick={() =>
+                setDarkMode((prevMode) => {
+                  return !prevMode;
+                })
+              }
+            >
+              { darkMode ? (<WbSunnyIcon />) : (<DarkModeIcon color="black" />)}
+            </IconButton>
+            {!isLogged ? (
+              <>
                 <Button
-                  style={{ fontSize: "18px" }}
+                  variant="contained"
+                  color="primary"
                   sx={{ ml: 2 }}
                   component={Link}
                   to="/login"
@@ -128,16 +121,25 @@ function Navbar() {
                   Login
                 </Button>
                 <Button
-                  style={{ fontSize: "18px" }}
+                  variant="contained"
+                  color="primary"
                   sx={{ ml: 2 }}
                   component={Link}
                   to="/register"
                 >
                   Register
                 </Button>
-              </Box>
+              </>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ ml: 2 }}
+                onClick={logout}
+              >
+                Logout
+              </Button>
             )}
-
           </Box>
         </Toolbar>
       </Container>
