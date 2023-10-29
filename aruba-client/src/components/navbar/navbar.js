@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import Divider from '@mui/material/Divider';
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Divider from "@mui/material/Divider";
 
 import {
   MenuItem,
@@ -19,9 +19,8 @@ import {
 import { Link } from "react-router-dom";
 import { useAuth } from "../../helpers/authContext.js";
 import logo from "../../img/aruplace_logo.png";
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 function Navbar({ setDarkMode, darkMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -44,7 +43,16 @@ function Navbar({ setDarkMode, darkMode }) {
     <AppBar position="static" style={{ boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={logo} width="150px" />
+          <img
+            src={logo}
+            width="150px"
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -91,6 +99,14 @@ function Navbar({ setDarkMode, darkMode }) {
             >
               Home
             </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              component={Link}
+              to="/support"
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Support
+            </Button>
             {isLogged && (
               <Button
                 onClick={handleCloseNavMenu}
@@ -126,34 +142,28 @@ function Navbar({ setDarkMode, darkMode }) {
               </>
             ) : (
               <>
-              <IconButton
-                variant="contained"
-                sx={{ ml: 2 }}
-                component={Link}
-                to="/profile"
-              >
-                <AccountCircleIcon />
-              </IconButton>
-              <IconButton
-                variant="contained"
-                
-                sx={{ ml: 2 }}
-                onClick={logout}
-              >
-                <LogoutIcon />
-              </IconButton>
-              
+                <IconButton
+                  variant="contained"
+                  sx={{ ml: 2 }}
+                  component={Link}
+                  to="/profile"
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <IconButton variant="contained" sx={{ ml: 2 }} onClick={logout}>
+                  <LogoutIcon />
+                </IconButton>
               </>
             )}
-             <Divider orientation="vertical" flexItem />
-              <IconButton
+            <Divider orientation="vertical" flexItem />
+            <IconButton
               onClick={() =>
                 setDarkMode((prevMode) => {
                   return !prevMode;
                 })
               }
             >
-              { darkMode ? (<WbSunnyIcon />) : (<DarkModeIcon color="black" />)}
+              {darkMode ? <WbSunnyIcon /> : <DarkModeIcon color="black" />}
             </IconButton>
           </Box>
         </Toolbar>

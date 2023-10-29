@@ -1,22 +1,19 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 
-import hiro from "../../img/hiro_icon.png";
+import hero from "../../img/hiro_icon.png";
+import hero_black from "../../img/hero_black.png";
+
 import hero2 from "../../img/hero2.png";
+import hero2_black from "../../img/hero2_black.png";
+
 import support from "../../img/support.png";
 
 import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import { useTheme } from "@mui/material/styles";
 
-import StepConnector, {
-  stepConnectorClasses,
-} from "@mui/material/StepConnector";
-import Check from "@mui/icons-material/Check";
-import SettingsIcon from "@mui/icons-material/Settings";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import VideoLabelIcon from "@mui/icons-material/VideoLabel";
-import PropTypes from "prop-types";
 import {
   Typography,
   Step,
@@ -42,146 +39,8 @@ const Item = styled(Paper)(({ theme, fullsized }) => ({
   boxShadow: "none",
 }));
 
-const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
-  color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
-  display: "flex",
-  height: 22,
-  alignItems: "center",
-  ...(ownerState.active && {
-    color: "#784af4",
-  }),
-  "& .QontoStepIcon-completedIcon": {
-    color: "#784af4",
-    zIndex: 1,
-    fontSize: 18,
-  },
-  "& .QontoStepIcon-circle": {
-    width: 8,
-    height: 8,
-    borderRadius: "50%",
-    backgroundColor: "currentColor",
-  },
-}));
-
-function QontoStepIcon(props) {
-  const { active, completed, className } = props;
-
-  return (
-    <QontoStepIconRoot ownerState={{ active }} className={className}>
-      {completed ? (
-        <Check className="QontoStepIcon-completedIcon" />
-      ) : (
-        <div className="QontoStepIcon-circle" />
-      )}
-    </QontoStepIconRoot>
-  );
-}
-
-QontoStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   * @default false
-   */
-  active: PropTypes.bool,
-  className: PropTypes.string,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   * @default false
-   */
-  completed: PropTypes.bool,
-};
-
-const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
-  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-    top: 22,
-  },
-  [`&.${stepConnectorClasses.active}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
-    },
-  },
-  [`&.${stepConnectorClasses.completed}`]: {
-    [`& .${stepConnectorClasses.line}`]: {
-      backgroundImage:
-        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
-    },
-  },
-  [`& .${stepConnectorClasses.line}`]: {
-    height: 3,
-    border: 0,
-    backgroundColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-    borderRadius: 1,
-  },
-}));
-
-const ColorlibStepIconRoot = styled("div")(({ theme, ownerState }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
-  zIndex: 1,
-  color: "#fff",
-  width: 50,
-  height: 50,
-  display: "flex",
-  borderRadius: "50%",
-  justifyContent: "center",
-  alignItems: "center",
-  ...(ownerState.active && {
-    backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
-    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
-  }),
-  ...(ownerState.completed && {
-    backgroundImage:
-      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
-  }),
-}));
-
-function ColorlibStepIcon(props) {
-  const { active, completed, className } = props;
-
-  const icons = {
-    1: <GroupAddIcon />,
-    2: <SettingsIcon />,
-    3: <VideoLabelIcon />,
-  };
-
-  return (
-    <ColorlibStepIconRoot
-      ownerState={{ completed, active }}
-      className={className}
-    >
-      {icons[String(props.icon)]}
-    </ColorlibStepIconRoot>
-  );
-}
-
-ColorlibStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   * @default false
-   */
-  active: PropTypes.bool,
-  className: PropTypes.string,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   * @default false
-   */
-  completed: PropTypes.bool,
-  /**
-   * The label displayed in the step icon.
-   */
-  icon: PropTypes.node,
-};
-
-const steps = [
-  "Register an account",
-  "Deploy an app",
-  "Enjoy your new app!",
-];
-
 function Home() {
+  const theme = useTheme();
   return (
     <>
       <Stack divider={<Divider orientation="horizontal" flexItem />}>
@@ -227,7 +86,10 @@ function Home() {
               </Item>
             </Grid>
             <Grid item xs={6}>
-              <img src={hiro} width={"450px"} />
+              <img
+                src={theme.palette.mode === "dark" ? hero : hero_black}
+                width={"450px"}
+              />
             </Grid>
           </Grid>
         </Item>
@@ -267,11 +129,10 @@ function Home() {
                         onClick={() => {
                           if (localStorage.getItem("token")) {
                             window.location.href = "/marketplace";
-                          }else{
+                          } else {
                             window.location.href = "/login";
                           }
-                        }
-                        }
+                        }}
                       >
                         Let's see the Apps
                       </Button>
@@ -280,46 +141,17 @@ function Home() {
                 </Grid>
                 <Grid item xs={6}>
                   <Item>
-                    <img src={hero2} style={{ width: "250px" }} />
+                    <img
+                      src={theme.palette.mode === "dark" ? hero2 : hero2_black}
+                      style={{ width: "250px" }}
+                    />
                   </Item>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
         </Item>
-        <Item fullsized>
-          <Grid
-            container
-            direction={"column"}
-            justifyContent="space-around"
-            height={"100%"}
-          >
-            <Grid item>
-              <Item>
-                <Typography variant="h1" component="h1">
-                  The Process
-                </Typography>
-              </Item>
-            </Grid>
-            <Grid item>
-              <Stack sx={{ width: "100%" }} spacing={4}>
-                <Stepper
-                  alternativeLabel
-                  activeStep={1}
-                  connector={<ColorlibConnector />}
-                >
-                  {steps.map((label) => (
-                    <Step key={label}>
-                      <StepLabel StepIconComponent={ColorlibStepIcon}>
-                        {label}
-                      </StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Stack>
-            </Grid>
-          </Grid>
-        </Item>
+
         <Item fullsized>
           <Grid
             container
@@ -343,6 +175,9 @@ function Home() {
                 <Button
                   variant="contained"
                   style={{ fontSize: "20px", marginTop: "120px" }}
+                  onClick={() => {
+                    window.location.href = "/support";
+                  }}
                 >
                   Support
                 </Button>
