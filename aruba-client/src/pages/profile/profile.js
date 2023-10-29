@@ -28,7 +28,7 @@ export default function Profile() {
   const [name, setName] = useState("");
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/getDeployedApp", {
+      .get("http://80.211.122.162/api/getDeployedApp", {
         headers: { authToken: localStorage.getItem("token") },
       })
       .then((response) => {
