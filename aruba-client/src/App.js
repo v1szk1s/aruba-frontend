@@ -69,7 +69,7 @@ const lightTheme = createTheme({
 });
 
 function App() {
-  document.title = "Az új oldal címe";
+  document.title = "AruPlace";
   const [darkMode, setDarkMode] = React.useState(true);
   return (
     <div className="App">

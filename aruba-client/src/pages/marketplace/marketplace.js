@@ -1,5 +1,6 @@
 import * as React from "react";
 
+
 import {
   Container,
   styled,
@@ -94,10 +95,11 @@ export default function Album() {
                     // 16:9
                     pt: "56.25%",
                   }}
-                  image="https://source.unsplash.com/random?wallpapers"
+                  image={require(`../../img/${app.image}`)}
+
                 />
                 <CardContent sx={{ flexGrow: 1 }} style={{ paddingBottom: 0 }}>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h1">
                     {app.name}
                   </Typography>
                   <Typography>{app.description}</Typography>

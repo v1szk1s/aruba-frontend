@@ -28,6 +28,7 @@ import {
   Stack,
   Divider,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme, fullsized }) => ({
   ...theme.typography.body2,
@@ -140,8 +141,8 @@ function ColorlibStepIcon(props) {
   const { active, completed, className } = props;
 
   const icons = {
-    1: <SettingsIcon />,
-    2: <GroupAddIcon />,
+    1: <GroupAddIcon />,
+    2: <SettingsIcon />,
     3: <VideoLabelIcon />,
   };
 
@@ -174,9 +175,9 @@ ColorlibStepIcon.propTypes = {
 };
 
 const steps = [
-  "Select campaign settings",
-  "Create an ad group",
-  "Create an ad",
+  "Register an account",
+  "Deploy an app",
+  "Enjoy your new app!",
 ];
 
 function Home() {
@@ -216,6 +217,8 @@ function Home() {
               <Item>
                 <Button
                   variant="contained"
+                  component={Link}
+                  to="/register"
                   style={{ fontSize: "20px", marginTop: "120px" }}
                 >
                   Register Now!

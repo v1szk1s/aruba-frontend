@@ -1,6 +1,9 @@
 import * as React from "react";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Divider from '@mui/material/Divider';
 
 import {
   MenuItem,
@@ -100,15 +103,6 @@ function Navbar({ setDarkMode, darkMode }) {
             )}
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton
-              onClick={() =>
-                setDarkMode((prevMode) => {
-                  return !prevMode;
-                })
-              }
-            >
-              { darkMode ? (<WbSunnyIcon />) : (<DarkModeIcon color="black" />)}
-            </IconButton>
             {!isLogged ? (
               <>
                 <Button
@@ -131,15 +125,36 @@ function Navbar({ setDarkMode, darkMode }) {
                 </Button>
               </>
             ) : (
-              <Button
+              <>
+              <IconButton
                 variant="contained"
-                color="primary"
+                sx={{ ml: 2 }}
+                component={Link}
+                to="/profile"
+              >
+                <AccountCircleIcon />
+              </IconButton>
+              <IconButton
+                variant="contained"
+                
                 sx={{ ml: 2 }}
                 onClick={logout}
               >
-                Logout
-              </Button>
+                <LogoutIcon />
+              </IconButton>
+              
+              </>
             )}
+             <Divider orientation="vertical" flexItem />
+              <IconButton
+              onClick={() =>
+                setDarkMode((prevMode) => {
+                  return !prevMode;
+                })
+              }
+            >
+              { darkMode ? (<WbSunnyIcon />) : (<DarkModeIcon color="black" />)}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

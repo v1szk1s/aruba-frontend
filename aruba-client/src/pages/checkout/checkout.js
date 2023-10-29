@@ -54,20 +54,17 @@ export default function Checkout() {
   };
 
   const deploy = () => {
-    axios
-      .post(
-        `http://localhost:8080/api/deploy/${id}`,
-        {},
-        { headers: { authToken: localStorage.getItem("token") } }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    axios.post(`http://localhost:8080/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
+    .then(res => {
+      console.log(res);
+    }
+    )
+    .catch(err => {
+      console.log(err);
+    })
 
+  }
+  
   return (
     <StyledStack>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>

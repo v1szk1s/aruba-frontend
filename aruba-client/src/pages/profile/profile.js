@@ -1,5 +1,4 @@
 import { Stack, Typography } from "@mui/material";
-import { orange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -9,6 +8,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   ...theme.typography.body2,
@@ -18,29 +21,45 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   borderRadius: "0px",
   boxShadow: "none",
+  minHeight: "100vh",
 }));
 
+
 export default function Profile() {
+  const [rows, setRows] = useState([]);
+  const [name, setName] = useState("");
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/getDeployedApp", {
+        headers: { authToken: localStorage.getItem("token") },
+      })
+      .then((response) => {
+        console.log(response.data);
+        let temp = [];
+        response.data.deployedApps.forEach((app) => {
+          temp.push(createData(app.app.name, app.app.version, app.app.price, app.date));
+        });
+        setRows(temp);
+        setName(response.data.firstName);
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      }, []);
+  });
+
   const theme = useTheme();
-  function createData(name, calories, fat, carbs) {
-    return { name, calories, fat, carbs };
+  function createData(name, version, price, deployed) {
+    return { name, version, price, deployed };
   }
 
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24),
-    createData("Ice cream sandwich", 237, 9.0, 3),
-    createData("Eclair", 262, 16.0, 24),
-    createData("Cupcake", 305, 3.7, 67),
-    createData("Gingerbread", 356, 16.0, 49),
-  ];
-
   return (
-    <>
+    <div style={{height: 100}}>
       <StyledStack direction={"column"}>
         <Typography variant="h1" component="h1" mt={4}>
-          Hi <span style={{ color: "orange" }}>Csaba!</span>
+          Hi <span style={{ color: "orange" }}>{name}!</span>
         </Typography>
-        <Typography variant="h4" component="h1" mt={4}>
+        <Typography variant="h4" component="h1" mt={4} mb={0}>
           Your deploy history
         </Typography>
         <TableContainer component={Paper} sx={{ width: "50%", margin: "auto" }}>
@@ -62,15 +81,15 @@ export default function Profile() {
                   <TableCell component="th" scope="row">
                     {row.name}
                   </TableCell>
-                  <TableCell align="center">{row.calories}</TableCell>
-                  <TableCell align="center">{row.fat}</TableCell>
-                  <TableCell align="center">{row.carbs}</TableCell>
+                  <TableCell align="center">{row.version}</TableCell>
+                  <TableCell align="center">{row.price}</TableCell>
+                  <TableCell align="center">{row.date}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </StyledStack>
-    </>
+    </div>
   );
 }
