@@ -10,12 +10,17 @@ import {
   Button,
   Avatar,
 } from "@mui/material/";
+import { useNavigate } from "react-router-dom";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/marketplace");
+  }, []);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -25,7 +30,7 @@ const Register = () => {
     const lastName = data.get("lastName");
     const repass = data.get("repass");
     axios
-      .post("http://80.211.122.162/api/register", {
+      .post("http://localhost:8080/api/register", {
         email: email,
         password: password,
         firstName: firstName,
@@ -36,6 +41,7 @@ const Register = () => {
         console.log(response);
         if (response.status === 200) {
           console.log("Success");
+          navigate("/login");
         }
       })
       .catch(function (error) {

@@ -27,8 +27,9 @@ export default function Profile() {
   const [rows, setRows] = useState([]);
   const [name, setName] = useState("");
   useEffect(() => {
+    if(!localStorage.getItem("token")) window.location.replace("/login");
     axios
-      .get("http://80.211.122.162/api/getDeployedApp", {
+      .get("http://localhost:8080/api/getDeployedApp", {
         headers: { authToken: localStorage.getItem("token") },
       })
       .then((response) => {

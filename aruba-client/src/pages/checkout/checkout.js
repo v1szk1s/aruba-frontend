@@ -16,6 +16,8 @@ import PaymentForm from "./paymentForm";
 import Review from "./review";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   ...theme.typography.body2,
@@ -25,6 +27,7 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   borderRadius: "0px",
   boxShadow: "none",
+  minHeight: "100vh",
 }));
 const steps = ["Billing address", "Payment details", "Review your order"];
 
@@ -44,7 +47,13 @@ function getStepContent(step) {
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const { id } = useParams();
-
+  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -54,17 +63,21 @@ export default function Checkout() {
   };
 
   const deploy = () => {
-    axios.post(`http://80.211.122.162/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
-    .then(res => {
-      console.log(res);
-    }
-    )
-    .catch(err => {
-      console.log(err);
-    })
+    axios
+      .post(
+        `http://localhost:8080/api/deploy/${id}`,
+        {},
+        { headers: { authToken: localStorage.getItem("token") } }
+      )
+      .then((res) => {
+        console.log(res);
+        setOpen(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  }
-  
   return (
     <StyledStack>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
@@ -125,6 +138,13 @@ export default function Checkout() {
           )}
         </Paper>
       </Container>
+
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        message="Namespace created"
+        style={{ color: "green" }}
+      />
     </StyledStack>
   );
 }

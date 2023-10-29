@@ -16,8 +16,8 @@ import {
 } from "@mui/material/";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   ...theme.typography.body2,
@@ -32,10 +32,11 @@ const StyledStack = styled(Stack)(({ theme }) => ({
 
 export default function Album() {
   const [app, setApp] = React.useState([]);
-
+  const navigate = useNavigate();
+  
   React.useEffect(() => {
     axios
-      .get("http://80.211.122.162/api/marketplace", {
+      .get("http://localhost:8080/api/marketplace", {
         headers: { authToken: localStorage.getItem("token") },
       })
       .then((response) => {
@@ -45,6 +46,10 @@ export default function Album() {
       .catch((error) => {
         console.log(error);
       });
+
+      if (!localStorage.getItem("token")) {
+        navigate("/login");
+      }
   }, []);
 
   return (

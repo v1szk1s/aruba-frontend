@@ -14,13 +14,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const navigate = useNavigate();
+  React.useEffect (() => { 
+    if(localStorage.getItem("token")) navigate("/marketplace");
+   }, []); 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
     axios
-      .post("http://80.211.122.162/api/login", {
+      .post("http://localhost:8080/api/login", {
         email: email,
         password: password,
       })

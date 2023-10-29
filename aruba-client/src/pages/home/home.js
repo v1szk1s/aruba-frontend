@@ -36,6 +36,7 @@ const Item = styled(Paper)(({ theme, fullsized }) => ({
   textAlign: "center",
   color: theme.palette.primary,
   backgroundColor: theme.palette.background.default,
+  backgroundImage: "none",
   height: fullsized ? "100vh" : "",
   borderRadius: "0px",
   boxShadow: "none",
@@ -263,6 +264,14 @@ function Home() {
                       <Button
                         variant="contained"
                         style={{ fontSize: "20px", marginTop: "120px" }}
+                        onClick={() => {
+                          if (localStorage.getItem("token")) {
+                            window.location.href = "/marketplace";
+                          }else{
+                            window.location.href = "/login";
+                          }
+                        }
+                        }
                       >
                         Let's see the Apps
                       </Button>
