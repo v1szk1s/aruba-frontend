@@ -16,7 +16,6 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.primary,
   backgroundColor: theme.palette.background.default,
-  height: "100vh",
   borderRadius: "0px",
   boxShadow: "none",
 }));

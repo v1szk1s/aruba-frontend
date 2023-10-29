@@ -1,25 +1,32 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import AddressForm from './addressForm';
-import PaymentForm from './paymentForm';
-import Review from './review';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import * as React from "react";
+import {
+  Typography,
+  Button,
+  StepLabel,
+  Step,
+  Stepper,
+  Paper,
+  Container,
+  Box,
+  Stack,
+  styled,
+} from "@mui/material";
+import AddressForm from "./addressForm";
+import PaymentForm from "./paymentForm";
+import Review from "./review";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-
-
-const steps = ['Billing address', 'Payment details', 'Review your order'];
+const StyledStack = styled(Stack)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.primary,
+  backgroundColor: theme.palette.background.default,
+  borderRadius: "0px",
+  boxShadow: "none",
+}));
+const steps = ["Billing address", "Payment details", "Review your order"];
 
 function getStepContent(step) {
   switch (step) {
@@ -30,13 +37,13 @@ function getStepContent(step) {
     case 2:
       return <Review />;
     default:
-      throw new Error('Unknown step');
+      throw new Error("Unknown step");
   }
 }
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const {id} = useParams();
+  const { id } = useParams();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -47,22 +54,27 @@ export default function Checkout() {
   };
 
   const deploy = () => {
-    axios.post(`http://localhost:8080/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
-    .then(res => {
-      console.log(res);
-    }
-    )
-    .catch(err => {
-      console.log(err);
-    })
+    axios
+      .post(
+        `http://localhost:8080/api/deploy/${id}`,
+        {},
+        { headers: { authToken: localStorage.getItem("token") } }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  }
-  
   return (
-    
-     
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+    <StyledStack>
+      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+        <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+        >
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
@@ -87,7 +99,7 @@ export default function Checkout() {
           ) : (
             <React.Fragment>
               {getStepContent(activeStep)}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                     Back
@@ -95,25 +107,27 @@ export default function Checkout() {
                 )}
 
                 {activeStep === steps.length - 1 ? (
-                   <Button
-                   variant="contained"
-                   onClick={deploy}
-                   sx={{ mt: 3, ml: 1 }} >
+                  <Button
+                    variant="contained"
+                    onClick={deploy}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
                     Deploy
                   </Button>
                 ) : (
-                <Button
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >Next </Button>)}
-            
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Next{" "}
+                  </Button>
+                )}
               </Box>
             </React.Fragment>
           )}
         </Paper>
-
       </Container>
-    
+    </StyledStack>
   );
 }
