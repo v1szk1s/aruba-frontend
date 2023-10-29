@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 
-
 const StyledStack = styled(Stack)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -23,7 +22,6 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   boxShadow: "none",
   minHeight: "100vh",
 }));
-
 
 export default function Profile() {
   const [rows, setRows] = useState([]);
@@ -37,16 +35,17 @@ export default function Profile() {
         console.log(response.data);
         let temp = [];
         response.data.deployedApps.forEach((app) => {
-          temp.push(createData(app.app.name, app.app.version, app.app.price, app.date));
+          temp.push(
+            createData(app.app.name, app.app.version, app.app.price, app.date)
+          );
         });
         setRows(temp);
         setName(response.data.firstName);
-        
       })
       .catch((error) => {
         console.log(error);
-      }, []);
-  });
+      });
+  }, []);
 
   const theme = useTheme();
   function createData(name, version, price, deployed) {
@@ -54,7 +53,7 @@ export default function Profile() {
   }
 
   return (
-    <div style={{height: 100}}>
+    <div style={{ height: 100 }}>
       <StyledStack direction={"column"}>
         <Typography variant="h1" component="h1" mt={4}>
           Hi <span style={{ color: "orange" }}>{name}!</span>
