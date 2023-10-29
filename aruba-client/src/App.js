@@ -6,6 +6,7 @@ import Register from "./pages/register/register";
 import Navbar from "./components/navbar/navbar";
 import Marketplace from "./pages/marketplace/marketplace";
 import Checkout from "./pages/checkout/checkout";
+import Profile from "./pages/profile/profile";
 import { AuthProvider } from "./helpers/authContext";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import * as React from "react";
@@ -81,6 +82,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/checkout/:id" element={<Checkout />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </ThemeProvider>
       </AuthProvider>

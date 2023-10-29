@@ -1,8 +1,6 @@
-import Stack from "@mui/material/Stack";
 import * as React from "react";
-import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
+
 import hiro from "../../img/hiro_icon.png";
 import hero2 from "../../img/hero2.png";
 import support from "../../img/support.png";
@@ -10,21 +8,26 @@ import support from "../../img/support.png";
 import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import Button from "@mui/material/Button";
 
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import Check from "@mui/icons-material/Check";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import VideoLabelIcon from "@mui/icons-material/VideoLabel";
 import PropTypes from "prop-types";
-import Divider from "@mui/material/Divider";
-import { Typography } from "@mui/material";
+import {
+  Typography,
+  Step,
+  StepLabel,
+  Button,
+  Stepper,
+  Grid,
+  Paper,
+  Stack,
+  Divider,
+} from "@mui/material";
 
 const Item = styled(Paper)(({ theme, fullsized }) => ({
   ...theme.typography.body2,
