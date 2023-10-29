@@ -81,7 +81,7 @@ function Navbar({ setDarkMode }) {
             >
               Home
             </Button>
-            {isLogged && (
+            {isLogged ? (
               <Button
                 onClick={handleCloseNavMenu}
                 component={Link}
