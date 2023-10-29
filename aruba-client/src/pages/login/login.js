@@ -20,7 +20,7 @@ export default function SignIn() {
     const email = data.get("email");
     const password = data.get("password");
     axios
-      .post("http://localhost:8080/api/login", {
+      .post("http://80.211.122.162/api/login", {
         email: email,
         password: password,
       })

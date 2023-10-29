@@ -35,7 +35,7 @@ export default function Album() {
 
   React.useEffect(() => {
     axios
-      .get("http://localhost:8080/api/marketplace", {
+      .get("http://80.211.122.162/api/marketplace", {
         headers: { authToken: localStorage.getItem("token") },
       })
       .then((response) => {

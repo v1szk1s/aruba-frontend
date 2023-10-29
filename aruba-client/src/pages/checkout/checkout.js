@@ -54,7 +54,7 @@ export default function Checkout() {
   };
 
   const deploy = () => {
-    axios.post(`http://localhost:8080/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
+    axios.post(`http://80.211.122.162/api/deploy/${id}`, {}, { headers: { 'authToken': localStorage.getItem('token') } })
     .then(res => {
       console.log(res);
     }
