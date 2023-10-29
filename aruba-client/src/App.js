@@ -75,7 +75,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-          <Navbar setDarkMode={setDarkMode} />
+          <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

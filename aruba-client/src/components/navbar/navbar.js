@@ -16,12 +16,19 @@ import {
 import { Link } from "react-router-dom";
 import { useAuth } from "../../helpers/authContext.js";
 import logo from "../../img/aruplace_logo.png";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
-function Navbar({ setDarkMode }) {
+
+function Navbar({ setDarkMode, darkMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const { isLogged } = useAuth();
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -81,7 +88,7 @@ function Navbar({ setDarkMode }) {
             >
               Home
             </Button>
-            {isLogged ? (
+            {isLogged && (
               <Button
                 onClick={handleCloseNavMenu}
                 component={Link}
@@ -93,35 +100,46 @@ function Navbar({ setDarkMode }) {
             )}
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
+            <IconButton
               onClick={() =>
                 setDarkMode((prevMode) => {
                   return !prevMode;
                 })
               }
             >
-              Toggle Theme
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ ml: 2 }}
-              component={Link}
-              to="/login"
-            >
-              Login
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ ml: 2 }}
-              component={Link}
-              to="/register"
-            >
-              Register
-            </Button>
+              { darkMode ? (<WbSunnyIcon />) : (<DarkModeIcon color="black" />)}
+            </IconButton>
+            {!isLogged ? (
+              <>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ ml: 2 }}
+                  component={Link}
+                  to="/login"
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ ml: 2 }}
+                  component={Link}
+                  to="/register"
+                >
+                  Register
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ ml: 2 }}
+                onClick={logout}
+              >
+                Logout
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </Container>

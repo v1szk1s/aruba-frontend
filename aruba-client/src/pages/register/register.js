@@ -21,7 +21,7 @@ const Register = () => {
     const lastName = data.get("lastName");
     const repass = data.get("repass");
     axios
-      .post("http://80.211.122.162/api/register", {
+      .post("http://localhost:8080/api/register", {
         email: email,
         password: password,
         firstName: firstName,
